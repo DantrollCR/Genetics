@@ -52,7 +52,7 @@ public class Genetic {
 		int p = rand.nextInt(100) / 100;
 		int[] array = { id, 0, 0, 0, 0, 0, 0, 0, 0 };
 		
-		if (p >= 0.50) {
+		if (p > 0.50) {
 			for (int i = 1; i < 5; i++) {
 				array[i] = p1.getCromosome(i);
 			}
@@ -68,7 +68,7 @@ public class Genetic {
 				array[i] = p1.getCromosome(i);
 			}
 		}
-//		else if(p>=0.10) {
+//		else if(p<0.50) {
 //			int counter =0;
 //			int i=0;
 //			int j=1;
@@ -80,6 +80,9 @@ public class Genetic {
 //				j+=2;
 //			}
 //		}
+		else if(p<0.05) {
+			array = mutate(array);
+		}
 
 		Gladiator hijo = new Gladiator(array);
 		return hijo;
@@ -97,7 +100,7 @@ public class Genetic {
 		while(stop==false) {
 
 			son = crossover(popu.getFittest(1),popu.getFittest(2));
-			son.setCromosome(mutate(son.getCromosome()));
+			
 
 			stop=true;
 //			int id1 = popu.get(0).getID();
@@ -115,7 +118,7 @@ public class Genetic {
 			popu.add(gladi);
 			count++;
 		}
-		popu.head(son);
+		popu.replace(son);
 
 		popu.fitness();
 		popu.sort(0, size-1);
@@ -125,6 +128,8 @@ public class Genetic {
 		//printPopu();
 	}
 	void run(int size) throws IOException, ParseException {
+		popu.clear();
+		generations=0;
 		this.size = size;
 		int generation = 0;
 		int count = 0;

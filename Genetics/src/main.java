@@ -17,8 +17,9 @@ public class main {
 		Json_editor json = new Json_editor();
 
 		System.out.println("Server On!");
-		
-		gen.run(45);	
+		for (int i = 0; i < 10; i++) {
+			gen.run(110);
+		}	
 
 		
 	}
