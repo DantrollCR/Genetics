@@ -26,7 +26,7 @@ public class main {
 		gen.run(100);
 	    long end = System.currentTimeMillis();
 	    float sec = (end - start) / 1000F; System.out.println(sec + " seconds");
-	    funcionPost();
+	    //funcionPost();
 
 	}
 
